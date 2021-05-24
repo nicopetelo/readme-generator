@@ -1,19 +1,19 @@
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(licenseInfo) {
-  if(license === 'no license'){
+  if(licenseInfo === 'no license'){
     return '';
   }
-  return `![license](https://img.shields.io/badge/License-${license}-blue)`;
+  return `![license](https://img.shields.io/badge/License-${licenseInfo}-blue)`;
 };
 
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(licenseInfo) {
-  if(license === 'n/a'){
+  if(licenseInfo === 'n/a'){
     return '';
   }
-  switch(license){
+  switch(licenseInfo){
     case 'MIT': 
       return `[${licenseInfo}]('https://choosealicense.com/licenses/mit/')
       A short and simple permissive license with conditions only requiring preservation of 
@@ -39,7 +39,7 @@ function renderLicenseLink(licenseInfo) {
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(licenseInfo) {
-  if (license === 'no license'){
+  if (licenseInfo === 'n/a'){
     return '';
   }
   return `## License`
@@ -47,9 +47,33 @@ function renderLicenseSection(licenseInfo) {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title}
-    
-`;
+  return`
+  # ${data.projectTitle}
+
+  ## Description
+  ${data.projectDescription}
+
+  ## Installation
+
+  ${data.installation}
+
+  ## Usage
+
+  ${data.usage}
+
+  ## Contributions
+
+  ${data.contributions}
+
+  ${renderLicenseSection(data.licenseInfo)}
+  ${renderLicenseBadge(data.licenseInfo)}
+  ${renderLicenseLink(data.licenseInfo)}
+  
+
+  ## Contact
+
+  [Github profile page](www.github.com/${data.githubAccount})
+  `;
 }
 
 module.exports = generateMarkdown;

@@ -2,11 +2,10 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const generateMarkdown = require('./utils/generateMarkdown');
-const generateReadMe = require('./utils/generateMarkdown')
 
 // TODO: Create an array of questions for user input
 const questions = () => {
-    inquirer
+    return inquirer
         .prompt([
             {
                 type: 'input',
@@ -31,6 +30,18 @@ const questions = () => {
                     } else {
                         console.log('You need to enter a description for this project.');
                         return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'installation',
+                message: 'Please detail how and what to install for your project. (Required)',
+                validate: requiredInput => {
+                    if (requiredInput) {
+                        return true;
+                    } else {
+                        console.log('You need to include installation information.')
                     }
                 }
             },
